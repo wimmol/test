@@ -1,3 +1,4 @@
+'use client'
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { useEffect, useState } from "react";
 import WebApp from '@twa-dev/sdk'
@@ -9,6 +10,9 @@ const Header=()=>{
     console.log(user)
     setUser(user);
   }, []);
+  useEffect(() => {
+    setUser(localStorage.getItem("user"))
+  }, [])
   return (
     <div className="px-5 py-3 flex items-center relative z-[1]">
       <img
@@ -16,7 +20,7 @@ const Header=()=>{
         alt="AvatarImg"
         className="w-10 h-10"
       ></img>
-      <div className=" text-sm font-medium text-white ml-3">{WebApp.initDataUnsafe.user?.username}</div>
+      <div className=" text-sm font-medium text-white ml-3">{user}</div>
       <div
         style={{
           display: "flex",
