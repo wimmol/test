@@ -28,7 +28,8 @@ const Header=()=>{
         alt="AvatarImg"
         className="w-10 h-10"
       ></img>
-      <div className=" text-sm font-medium text-white ml-3">{user}</div>
+      {/*@ts-ignore*/}
+      <div className=" text-sm font-medium text-white ml-3">{user.username || user.first_name}</div>
       <div
         style={{
           display: "flex",
