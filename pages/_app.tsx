@@ -1,3 +1,4 @@
+'use client';
 import type { AppProps } from 'next/app'
 import '../app/globals.css'
 import { SnackbarProvider } from 'notistack'

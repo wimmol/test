@@ -1,7 +1,6 @@
 'use client'
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { useEffect, useState } from "react";
-import WebApp from '@twa-dev/sdk'
 
 const Header=()=>{
   const [user, setUser] = useState<string | null>("");

@@ -1,12 +1,13 @@
 import { Html, Head, Main, NextScript } from 'next/document'
- 
+
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head/>
+      <script src="https://telegram.org/js/telegram-web-app.js"></script>
       <body>
-        <Main />
-        <NextScript />
+        <Main/>
+        <NextScript/>
       </body>
     </Html>
   )
