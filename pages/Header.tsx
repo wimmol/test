@@ -11,7 +11,15 @@ const Header=()=>{
     setUser(user);
   }, []);
   useEffect(() => {
-    setUser(localStorage.getItem("user"))
+    // @ts-ignore
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    const initUser = tg.initDataUnsafe.user;
+    if (initUser) {
+      setUser(initUser);
+    }
+
   }, [])
   return (
     <div className="px-5 py-3 flex items-center relative z-[1]">
