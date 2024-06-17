@@ -1,5 +1,6 @@
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { useEffect, useState } from "react";
+import WebApp from '@twa-dev/sdk'
 
 const Header=()=>{
   const [user, setUser] = useState<string | null>("");
@@ -15,7 +16,7 @@ const Header=()=>{
         alt="AvatarImg"
         className="w-10 h-10"
       ></img>
-      <div className=" text-sm font-medium text-white ml-3">@{user}</div>
+      <div className=" text-sm font-medium text-white ml-3">{WebApp.initDataUnsafe.user?.username}</div>
       <div
         style={{
           display: "flex",
