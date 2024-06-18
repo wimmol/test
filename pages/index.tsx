@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import requests from '@/app/api';
 
 export default function Index() {
   const [count, setCount] = useState<number>(0);
@@ -45,7 +46,33 @@ export default function Index() {
     //
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const WebApp = window.Telegram.WebApp;
+    WebApp.ready();
+    const user = WebApp.initDataUnsafe.user;
+    if (user) {
+      (async () => {
+        try {
+          const res = await requests.postStart({
+            tg_id: user.id,
+            ref_of: 'no ref',
+            username: user.username || user.first_name,
+            first_name: user.first_name,
+            last_name: user.last_name || '',
+            photo_url: user.photo_url,
+            is_premium: !!user.is_premium,
+          });
+          if (res.data) {
+            WebApp.showAlert(res.data.toString());
+          } else {
+            WebApp.showAlert(res.error.toString());
+          }
+        } catch (error: any) {
+          WebApp.showAlert(error.toString());
+        }
+      })();
+    }
+  }, []);
   return (
     <>
       <div>

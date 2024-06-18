@@ -1,26 +1,17 @@
-"use Client";
+'use Client';
 
-import Card from "@/app/components/common/card";
-import Link from "next/link";
-import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
-
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import ConstructionIcon from "@mui/icons-material/Construction";
-import EuroIcon from "@mui/icons-material/Euro";
-import Diversity3Icon from "@mui/icons-material/Diversity3";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Header from "./Header";
-import Footer from "./Footer";
+import Card from '@/app/components/common/card';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 function Earn() {
-  const [user, setUser] = useState<string | null>("");
+  const [user, setUser] = useState<string | null>('');
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem('user');
     setUser(user);
   });
 
@@ -45,7 +36,7 @@ function Earn() {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex h-screen items-center justify-center">
           <CircularProgress />
         </div>
       ) : (
@@ -53,8 +44,8 @@ function Earn() {
       )}
 
       <div hidden={loading}>
-        <div className="pt-7 mb-[90px] px-5 text-white rounded-t-3xl bg-[#1C1F24] border-t-2 border-[rgb(243,186,47)] shadow-km">
-          <div className="text-xl font-medium ">Tasks list</div>
+        <div className="mb-[90px] rounded-t-3xl border-t-2 border-[rgb(243,186,47)] bg-[#1C1F24] px-5 pt-7 text-white shadow-km">
+          <div className="text-xl font-medium">Tasks list</div>
           {/* <Card
             title="Telegram Channel"
             price="10000"

@@ -1,10 +1,8 @@
 import axios, { AxiosError } from 'axios';
-import WebApp from '@twa-dev/sdk';
 
 const defaultAxios = axios.create({
   baseURL: 'https://efobegdock.beget.app/api/v1',
   headers: {
-    Authorization: WebApp.initData,
     'Content-Type': 'application/json',
   },
 });
@@ -48,11 +46,16 @@ const wrappedAxiosRequest = async <ReqType, RespType>({
   responseType,
 }: AxiosRequestConfig<ReqType>) => {
   try {
+    const WebApp = window.Telegram.WebApp;
+    WebApp.ready();
     const response = await defaultAxios({
       url,
       method,
       data,
-      headers,
+      headers: {
+        ...headers,
+        Authorization: WebApp.initData,
+      },
       params,
       responseType,
     });

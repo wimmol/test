@@ -4,7 +4,7 @@ export interface IPostStartRequest {
   username: string;
   first_name: string;
   last_name: string;
-  photo_url: string;
+  photo_url: string | undefined;
   is_premium: boolean;
 }
 
