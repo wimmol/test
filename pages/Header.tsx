@@ -1,10 +1,10 @@
 'use client'
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { useEffect, useState } from "react";
+import WebApp from '@twa-dev/sdk'
 
 const Header=()=>{
   const [user, setUser] = useState<string | null>("");
-  const [avatarUrl, setAvatarUrl] = useState('');
   useEffect(() => {
     const user = localStorage.getItem("user");
     console.log(user)
@@ -18,24 +18,13 @@ const Header=()=>{
     const initUser = tg.initDataUnsafe.user;
     if (initUser) {
       setUser(initUser);
-      fetchUserProfilePhoto(initUser.id);
     }
 
   }, [])
-  const fetchUserProfilePhoto = (userId: string) => {
-    fetch(`/getUserProfilePhoto?userId=${userId}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.ok) {
-          setAvatarUrl(data.url);
-        }
-      })
-      .catch(error => console.error('Error fetching user profile photo:', error));
-  };
   return (
     <div className="px-5 py-3 flex items-center relative z-[1]">
       <img
-        src={avatarUrl ? avatarUrl : "/images/avatar.png"}
+        src="/images/avatar.png"
         alt="AvatarImg"
         className="w-10 h-10"
       ></img>
